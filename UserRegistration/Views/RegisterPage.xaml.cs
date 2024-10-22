@@ -28,6 +28,8 @@ namespace UserRegistration.Views
     {
         private readonly DatiPersonaViewModel _viewModel = new();
         private int _lastId = 1;
+        private int _statusAddPerson = 0;
+        private bool _statusSave = false;
 
 
         public RegisterPage()
@@ -44,12 +46,48 @@ namespace UserRegistration.Views
             await LoadPersonAsync();
         }
 
+        private async void GoBackMenu(object sender, RoutedEventArgs e)
+        {
+            if (_statusAddPerson > 0)
+            {
+                if (!_statusSave)
+                {
+                    ContentDialog confirmDialog = new ContentDialog
+                    {
+                        Title = "Conferma Go Back",
+                        Content = "Non hai salvato tutti i dati! Se torni indietro perderai i dati recenti.",
+                        PrimaryButtonText = "OK",
+                        CloseButtonText = "Annulla"
+                    };
+                    // Mostra la finestra di dialogo e aspetta la risposta dell'utente
+                    ContentDialogResult result = await confirmDialog.ShowAsync();
+
+                    // Se l'utente ha cliccato "OK", chiudi l'applicazione
+                    if (result == ContentDialogResult.Primary)
+                    {
+                        Frame.Navigate(typeof(MenuPage));
+                    }
+                }
+                else
+                {
+                    Frame.Navigate(typeof(MenuPage));
+                }
+            }
+            else
+            {
+                Frame.Navigate(typeof(MenuPage));
+            }
+        }
+
         private void AddPersona(object sender, RoutedEventArgs e)
         {
             _viewModel.ObjectPersona.Id = _lastId;
             DatiPersonaViewModel.ListaPersone.Add(_viewModel.ObjectPersona);
             _lastId += 1;
+            _statusAddPerson += 1;
             _viewModel.ObjectPersona = new();
+            _statusSave = false;
+            btnSave.IsEnabled = true;
         }
 
         private void SavePersone(object sender, RoutedEventArgs e)
@@ -63,11 +101,66 @@ namespace UserRegistration.Views
                 FileIO.WriteTextAsync(file, JsonConvert
                         .SerializeObject(new List<Persona>(DatiPersonaViewModel.ListaPersone)))
                     .GetAwaiter().GetResult();
+
+                _statusSave = true;
+                btnSave.IsEnabled = false;
             }
             catch (FileNotFoundException ex)
             {
                 Console.WriteLine("Il file non è stato trovato: "+ ex);
             }
+        }
+
+
+        private void TestLetterInput(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            // Entra nell'If solo se il tasto premuto è tutto tranne delle lettere o il backspace
+            if (!char.IsLetter((char)e.Key) && e.Key != Windows.System.VirtualKey.Tab && e.Key != Windows.System.VirtualKey.Back)
+            {
+                // Impedisce che l'input venga elaborato se non è valido
+                e.Handled = true;
+            }
+
+            btnInserisci.IsEnabled = !string.IsNullOrEmpty(inputName.Text) && !string.IsNullOrEmpty(inputSurname.Text);
+        }
+
+        private void TestNumberInput(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+
+            // Entra nell'If solo se il tasto premuto è tutto tranne delle lettere o il backspace
+            if (!char.IsNumber((char)e.Key) && e.Key != Windows.System.VirtualKey.Tab && e.Key != Windows.System.VirtualKey.Back)
+            {
+                // Impedisce che l'input venga elaborato se non è valido
+                e.Handled = true;
+            }
+
+            if (textBox.Name.Equals("inputTelefono"))
+            {
+                bool isValid = (textBox.Text.Length == 10 || textBox.Text.Length == 0);
+                if (!isValid)
+                {
+                    inputTelefono.Header = "10 numeri";
+                }
+                else
+                {
+                    inputTelefono.Header = "Telefono:";
+                }
+            }
+
+            if (textBox.Name.Equals("inputCap"))
+            {
+                bool isValid = (textBox.Text.Length == 5 || textBox.Text.Length == 0);
+                if (!isValid)
+                {
+                    inputCap.Header = "5 numeri";
+                }
+                else
+                {
+                    inputCap.Header = "Cap:";
+                }
+            }
+
         }
 
 
@@ -107,7 +200,6 @@ namespace UserRegistration.Views
                 Console.WriteLine("Il file non è stato trovato: "+ ex);
             }
         }
-
 
     }
 }

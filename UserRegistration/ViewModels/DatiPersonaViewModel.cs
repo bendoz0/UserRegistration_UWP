@@ -78,7 +78,7 @@ namespace UserRegistration.ViewModels
                 OnPropertyChanged(nameof(city));
             }
         }
-        public int cap
+        public int? cap
         {
             get => Person.Cap;
             set
@@ -87,7 +87,7 @@ namespace UserRegistration.ViewModels
                 OnPropertyChanged(nameof(cap));
             }
         }
-        public int phoneNumber
+        public int? phoneNumber
         {
             get => Person.PhoneNumber;
             set

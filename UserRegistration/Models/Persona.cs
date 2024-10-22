@@ -16,7 +16,7 @@ namespace UserRegistration.Models
         public string FormatBirthDay { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
-        public int Cap { get; set; }
-        public int PhoneNumber { get; set; }
+        public int? Cap { get; set; }
+        public int? PhoneNumber { get; set; }
     }
 }

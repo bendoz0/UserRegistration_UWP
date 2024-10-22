@@ -16,26 +16,26 @@
         
         <Grid Grid.Row="0">
             <Button HorizontalAlignment="Right" VerticalAlignment="Top" Content="Go back &#x2192;" FontSize="24" 
-                    Margin="0,10,10,0" Width="140" Height="50" ></Button>
+                    Margin="0,10,10,0" Width="140" Height="50" Click="GoBackMenu"></Button>
 
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="12">
                     <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci nome" FontSize="20" Header="Nome:" x:Name="inputName" 
-                              Text="{Binding name, Mode=TwoWay}" Margin="0 0 12 0 "/>
+                             PreviewKeyDown="TestLetterInput" Text="{Binding name, Mode=TwoWay}" Margin="0 0 12 0 "/>
                     <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci cognome" FontSize="20" Header="Cognome:" x:Name="inputSurname" 
-                              Text="{Binding surname, Mode=TwoWay}" Margin="0 0 12 0 "/>
+                             PreviewKeyDown="TestLetterInput" Text="{Binding surname, Mode=TwoWay}" Margin="0 0 12 0 "/>
                     <DatePicker VerticalAlignment="Top" FontSize="20" Header="Data di nascita:" x:Name="inputData" Date="{Binding birthDay, Mode=TwoWay}"/>
 
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="12">
                     <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="+039" FontSize="20" Header="Telefono:" x:Name="inputTelefono" MaxLength="10" 
-                              Text="{Binding phoneNumber, Mode=TwoWay}" Margin="0 0 12 0 "/>
-                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci Cap" FontSize="20" Header="CAP:" x:Name="inputCap" MaxLength="5" 
-                              Text="{Binding cap, Mode=TwoWay}" Margin="0 0 12 0 "/>
+                             PreviewKeyDown="TestNumberInput" Text="{Binding phoneNumber, Mode=TwoWay}" Margin="0 0 12 0 "/>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci Cap" FontSize="20" Header="Cap:" x:Name="inputCap" MaxLength="5" 
+                             PreviewKeyDown="TestNumberInput" Text="{Binding cap, Mode=TwoWay}" Margin="0 0 12 0 "/>
                     <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci Città" FontSize="20" Header="Città:" x:Name="inputCitta" 
-                              Text="{Binding city, Mode=TwoWay}" Margin="0 0 12 0 "/>
+                             PreviewKeyDown="TestLetterInput" Text="{Binding city, Mode=TwoWay}" Margin="0 0 12 0 "/>
                     <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci Indirizzo" FontSize="20" Header="Indirizzo:" x:Name="inputIndirizzo" 
                              Text="{Binding address, Mode=TwoWay}"/>
                 </StackPanel>
@@ -46,8 +46,8 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0"  VerticalAlignment="Top" FontSize="32"  Click="AddPersona" x:Name="btnInserisci" Content="Inserisci"/>
-                    <Button Grid.Column="1"  VerticalAlignment="Top" FontSize="32" Click="SavePersone"  x:Name="btnSave" Content="Esporta"/>
+                    <Button Grid.Column="0"  VerticalAlignment="Top" FontSize="32" IsEnabled="False" Click="AddPersona" x:Name="btnInserisci" Content="Inserisci"/>
+                    <Button Grid.Column="1"  VerticalAlignment="Top" FontSize="32" IsEnabled="False" Click="SavePersone" x:Name="btnSave" Content="Esporta"/>
                 </Grid>
             </StackPanel>
         </Grid>
