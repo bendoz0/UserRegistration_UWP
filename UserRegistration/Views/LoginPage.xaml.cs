@@ -28,7 +28,7 @@ namespace UserRegistration.Views
     public sealed partial class LoginPage : Page
     {
 
-        private List<Credentials> listCredentials = [];
+        private List<Credentials> _listCredentials = [];
 
         public LoginPage()
         {
@@ -76,19 +76,19 @@ namespace UserRegistration.Views
             try
             {
                 string encryptedPassword = EncryptPassword(inputPassword.Password);                                                     
-                foreach (Credentials cred2 in listCredentials)
+                foreach (Credentials cred2 in _listCredentials)
                     exist = (cred2.Username == inputUsername.Text);
 
                 if (exist)
                 {
                     Debug.WriteLine("Username uguale");
                     var usernameErrorEffect = ErrorEffect(inputUsername);
-
+                    inputUsername.Header = "Username già in uso";
                     Task.WhenAll(usernameErrorEffect);
                 }
                 else
                 {
-                    listCredentials.Add(new Credentials
+                    _listCredentials.Add(new Credentials
                     {
                         Username = inputUsername.Text,
                         Password = encryptedPassword
@@ -99,7 +99,7 @@ namespace UserRegistration.Views
                         CreationCollisionOption.ReplaceExisting).GetAwaiter().GetResult();
 
                     FileIO.WriteTextAsync(file, JsonConvert
-                        .SerializeObject(new List<Credentials>(listCredentials)))
+                        .SerializeObject(new List<Credentials>(_listCredentials)))
                         .GetAwaiter().GetResult();
 
                     result = true;                                                                                                  
@@ -134,7 +134,7 @@ namespace UserRegistration.Views
             bool credentialOK = false;                                                                                             
             string valPwdEncrypted = EncryptPassword(inputPassword.Password);                                                      
 
-            foreach (Credentials cred2 in listCredentials)
+            foreach (Credentials cred2 in _listCredentials)
                 credentialOK = (cred2.Username == inputUsername.Text && cred2.Password == valPwdEncrypted);                       
 
             if (credentialOK)
@@ -160,7 +160,7 @@ namespace UserRegistration.Views
             {
                 StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync("credentials.json");
                 string cred = await FileIO.ReadTextAsync(file);
-                listCredentials = JsonConvert.DeserializeObject<List<Credentials>>(cred);
+                _listCredentials = JsonConvert.DeserializeObject<List<Credentials>>(cred);
             }
             catch (FileNotFoundException)
             {

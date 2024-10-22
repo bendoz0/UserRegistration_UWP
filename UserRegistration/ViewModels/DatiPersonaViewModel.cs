@@ -13,7 +13,7 @@ namespace UserRegistration.ViewModels
     internal class DatiPersonaViewModel: INotifyPropertyChanged
     {
         public Persona Person = new();
-        public ObservableCollection<Persona> ListaPersone { get; set; } = [];
+        public static ObservableCollection<Persona> ListaPersone { get; set; } = [];
 
         public Persona ObjectPersona
         {
@@ -21,7 +21,6 @@ namespace UserRegistration.ViewModels
             set
             {
                 Person = value;
-                OnPropertyChanged(nameof(id));
                 OnPropertyChanged(nameof(name));
                 OnPropertyChanged(nameof(surname));
                 OnPropertyChanged(nameof(birthDay));
@@ -34,15 +33,6 @@ namespace UserRegistration.ViewModels
         }
 
 
-        public int id
-        {
-            get => Person.Id;
-            set
-            {
-                Person.Id = value;
-                OnPropertyChanged(nameof(id));
-            }
-        }
         public string name
         {
             get => Person.Name;

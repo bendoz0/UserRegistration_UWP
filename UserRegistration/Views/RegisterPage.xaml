@@ -9,6 +9,75 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Content="Go back &#x2192;" FontSize="24" 
+                    Margin="0,10,10,0" Width="140" Height="50" ></Button>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="12">
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci nome" FontSize="20" Header="Nome:" x:Name="inputName" 
+                              Text="{Binding name, Mode=TwoWay}" Margin="0 0 12 0 "/>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci cognome" FontSize="20" Header="Cognome:" x:Name="inputSurname" 
+                              Text="{Binding surname, Mode=TwoWay}" Margin="0 0 12 0 "/>
+                    <DatePicker VerticalAlignment="Top" FontSize="20" Header="Data di nascita:" x:Name="inputData" Date="{Binding birthDay, Mode=TwoWay}"/>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="12">
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="+039" FontSize="20" Header="Telefono:" x:Name="inputTelefono" MaxLength="10" 
+                              Text="{Binding phoneNumber, Mode=TwoWay}" Margin="0 0 12 0 "/>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci Cap" FontSize="20" Header="CAP:" x:Name="inputCap" MaxLength="5" 
+                              Text="{Binding cap, Mode=TwoWay}" Margin="0 0 12 0 "/>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci Città" FontSize="20" Header="Città:" x:Name="inputCitta" 
+                              Text="{Binding city, Mode=TwoWay}" Margin="0 0 12 0 "/>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci Indirizzo" FontSize="20" Header="Indirizzo:" x:Name="inputIndirizzo" 
+                             Text="{Binding address, Mode=TwoWay}"/>
+                </StackPanel>
+
+                <Grid Margin="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"  VerticalAlignment="Top" FontSize="32"  Click="AddPersona" x:Name="btnInserisci" Content="Inserisci"/>
+                    <Button Grid.Column="1"  VerticalAlignment="Top" FontSize="32" Click="SavePersone"  x:Name="btnSave" Content="Esporta"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ListBox ItemsSource="{Binding ListaPersone}" Background="Azure">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="Black">ID:</TextBlock>
+                            <TextBlock Foreground="Black" Text="{Binding Id}" Margin="0 0 12 0"/>
+                            <TextBlock Foreground="Black">| Nome:</TextBlock>
+                            <TextBlock Foreground="Black" Text="{Binding Name}" Margin="0 0 12 0"/>
+                            <TextBlock Foreground="Black">| Cognome:</TextBlock>
+                            <TextBlock Foreground="Black" Text="{Binding Surname}" Margin="0 0 12 0"/>
+                            <TextBlock Foreground="Black">| Data Nascita:</TextBlock>
+                            <TextBlock Foreground="Black" Text="{Binding FormatBirthDay}" Margin="0 0 12 0"/>
+                            <TextBlock Foreground="Black">| Telefono:</TextBlock>
+                            <TextBlock Foreground="Black" Text="{Binding PhoneNumber}" Margin="0 0 12 0"/>
+                            <TextBlock Foreground="Black">| CAP:</TextBlock>
+                            <TextBlock Foreground="Black" Text="{Binding Cap}" Margin="0 0 12 0"/>
+                            <TextBlock Foreground="Black">| Città:</TextBlock>
+                            <TextBlock Foreground="Black" Text="{Binding City}" Margin="0 0 12 0"/>
+                            <TextBlock Foreground="Black">| Indirizzo:</TextBlock>
+                            <TextBlock Foreground="Black" Text="{Binding Address}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
 
     </Grid>
 </Page>
