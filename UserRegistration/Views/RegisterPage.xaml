@@ -25,7 +25,7 @@
                              PreviewKeyDown="TestLetterInput" Text="{Binding name, Mode=TwoWay}" Margin="0 0 12 0 "/>
                     <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" PlaceholderText="Inserisci cognome" FontSize="20" Header="Cognome:" x:Name="inputSurname" 
                              PreviewKeyDown="TestLetterInput" Text="{Binding surname, Mode=TwoWay}" Margin="0 0 12 0 "/>
-                    <DatePicker VerticalAlignment="Top" FontSize="20" Header="Data di nascita:" x:Name="inputData" Date="{Binding birthDay, Mode=TwoWay}"/>
+                    <DatePicker VerticalAlignment="Top" FontSize="20" Header="Data di nascita:" x:Name="inputData" Date="{Binding BirthDay, Mode=TwoWay}"/>
 
                 </StackPanel>
 
@@ -43,17 +43,21 @@
                 <Grid Margin="12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0"  VerticalAlignment="Top" FontSize="32" IsEnabled="False" Click="AddPersona" x:Name="btnInserisci" Content="Inserisci"/>
-                    <Button Grid.Column="1"  VerticalAlignment="Top" FontSize="32" IsEnabled="False" Click="SavePersone" x:Name="btnSave" Content="Esporta"/>
+                    <Button Grid.Column="1" VerticalAlignment="Top" FontSize="32" Click="AggiornaPersona" Content="Aggiorna"/>
+                    <Button Grid.Column="2"  VerticalAlignment="Top" FontSize="32" IsEnabled="False" Click="SavePersone" x:Name="btnSave" Content="Esporta"/>
                 </Grid>
             </StackPanel>
         </Grid>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-            <ListBox ItemsSource="{Binding ListaPersone}" Background="Azure">
+            <ListBox ItemsSource="{Binding ListaPersone}" 
+                     SelectedItem="{Binding SelectedPersona, Mode=TwoWay}"
+                     Background="Azure">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

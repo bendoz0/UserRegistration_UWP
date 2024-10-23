@@ -90,6 +90,31 @@ namespace UserRegistration.Views
             btnSave.IsEnabled = true;
         }
 
+        private void AggiornaPersona(object sender, RoutedEventArgs e)
+        {
+            if (_viewModel.SelectedPersona != null)
+            {
+               _viewModel.SelectedPersona.Name = _viewModel.name;
+                _viewModel.SelectedPersona.Surname = _viewModel.surname;
+                _viewModel.SelectedPersona.BirthDay = _viewModel.birthDay;
+                _viewModel.SelectedPersona.Address = _viewModel.address;
+                _viewModel.SelectedPersona.City = _viewModel.city;
+                _viewModel.SelectedPersona.Cap = _viewModel.cap;
+                _viewModel.SelectedPersona.PhoneNumber = _viewModel.phoneNumber;
+
+                //_viewModel.OnPropertyChanged(nameof(DatiPersonaViewModel.ListaPersone));
+                var index = DatiPersonaViewModel.ListaPersone.IndexOf(_viewModel.SelectedPersona);
+                if (index != -1)
+                {
+                    DatiPersonaViewModel.ListaPersone[index] = _viewModel.SelectedPersona;
+                }
+                _viewModel.ObjectPersona = new ();
+                _statusSave = false;
+                btnSave.IsEnabled = true;
+            }
+        }
+
+
         private void SavePersone(object sender, RoutedEventArgs e)
         {
             try

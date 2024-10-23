@@ -14,6 +14,7 @@ namespace UserRegistration.ViewModels
     {
         public Persona Person = new();
         public static ObservableCollection<Persona> ListaPersone { get; set; } = [];
+        private Persona _selectedPersona;
 
         public Persona ObjectPersona
         {
@@ -31,6 +32,28 @@ namespace UserRegistration.ViewModels
 
             }
         }
+
+        public Persona SelectedPersona
+        {
+            get => _selectedPersona;
+            set
+            {
+                _selectedPersona = value;
+                if (_selectedPersona != null)
+                {
+                    name = _selectedPersona.Name;
+                    surname = _selectedPersona.Surname;
+                    birthDay = _selectedPersona.BirthDay;
+                    address = _selectedPersona.Address;
+                    city = _selectedPersona.City;
+                    cap = _selectedPersona.Cap;
+                    phoneNumber = _selectedPersona.PhoneNumber;
+                }
+                OnPropertyChanged(nameof(SelectedPersona));
+            }
+        }
+
+
 
 
         public string name
@@ -104,7 +127,7 @@ namespace UserRegistration.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
