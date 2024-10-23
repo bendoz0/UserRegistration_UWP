@@ -44,12 +44,14 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0"  VerticalAlignment="Top" FontSize="32" IsEnabled="False" Click="AddPersona" x:Name="btnInserisci" Content="Inserisci"/>
-                    <Button Grid.Column="1" VerticalAlignment="Top" FontSize="32" Click="AggiornaPersona" Content="Aggiorna"/>
-                    <Button Grid.Column="2"  VerticalAlignment="Top" FontSize="32" IsEnabled="False" Click="SavePersone" x:Name="btnSave" Content="Esporta"/>
+                    <Button Grid.Column="0"  VerticalAlignment="Top" FontSize="24" IsEnabled="False" Click="AddPersona" x:Name="btnInserisci" Content="Inserisci"/>
+                    <Button Grid.Column="1" VerticalAlignment="Top" FontSize="24" Click="AggiornaPersona" Content="Aggiorna"/>
+                    <Button Grid.Column="2" VerticalAlignment="Top" FontSize="24" Click="EliminaPersona" Content="Elimina"/>
+                    <Button Grid.Column="3"  VerticalAlignment="Top" FontSize="24" IsEnabled="False" Click="SavePersone" x:Name="btnSave" Content="Esporta"/>
                 </Grid>
             </StackPanel>
         </Grid>

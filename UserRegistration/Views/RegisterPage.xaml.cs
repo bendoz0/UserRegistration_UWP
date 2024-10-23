@@ -94,7 +94,7 @@ namespace UserRegistration.Views
         {
             if (_viewModel.SelectedPersona != null)
             {
-               _viewModel.SelectedPersona.Name = _viewModel.name;
+                _viewModel.SelectedPersona.Name = _viewModel.name;
                 _viewModel.SelectedPersona.Surname = _viewModel.surname;
                 _viewModel.SelectedPersona.BirthDay = _viewModel.birthDay;
                 _viewModel.SelectedPersona.Address = _viewModel.address;
@@ -102,17 +102,36 @@ namespace UserRegistration.Views
                 _viewModel.SelectedPersona.Cap = _viewModel.cap;
                 _viewModel.SelectedPersona.PhoneNumber = _viewModel.phoneNumber;
 
-                //_viewModel.OnPropertyChanged(nameof(DatiPersonaViewModel.ListaPersone));
+                // Carca l'elemento selezionato nella lista
                 var index = DatiPersonaViewModel.ListaPersone.IndexOf(_viewModel.SelectedPersona);
                 if (index != -1)
                 {
+                    // Aggiorna l'elemento della lista selezionato
                     DatiPersonaViewModel.ListaPersone[index] = _viewModel.SelectedPersona;
                 }
+                // Pulisce i campi
                 _viewModel.ObjectPersona = new ();
                 _statusSave = false;
                 btnSave.IsEnabled = true;
             }
         }
+
+        private void EliminaPersona(object sender, RoutedEventArgs e)
+        {
+            if (_viewModel.SelectedPersona != null)
+            {
+                // Rimuove l'elemento selezionato dalla lista
+                DatiPersonaViewModel.ListaPersone.Remove(_viewModel.SelectedPersona);
+
+                _viewModel.ObjectPersona = new Persona();
+
+                _viewModel.SelectedPersona = null;
+
+                _statusSave = false;
+                btnSave.IsEnabled = true;
+            }
+        }
+
 
 
         private void SavePersone(object sender, RoutedEventArgs e)

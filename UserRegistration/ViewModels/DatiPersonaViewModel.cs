@@ -14,7 +14,11 @@ namespace UserRegistration.ViewModels
     {
         public Persona Person = new();
         public static ObservableCollection<Persona> ListaPersone { get; set; } = [];
+
         private Persona _selectedPersona;
+        //public bool CanUpdatePersona => SelectedPersona != null;
+        // da mettere nel bottone Aggiorna nello xaml : IsEnabled="{Binding CanUpdatePersona}"
+
 
         public Persona ObjectPersona
         {
@@ -50,7 +54,9 @@ namespace UserRegistration.ViewModels
                     phoneNumber = _selectedPersona.PhoneNumber;
                 }
                 OnPropertyChanged(nameof(SelectedPersona));
+                //OnPropertyChanged(nameof(CanUpdatePersona));
             }
+
         }
 
 
