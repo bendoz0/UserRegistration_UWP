@@ -127,8 +127,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Credentials.cs" />
     <Compile Include="Models\Persona.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\UtenteLoggato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DatiPersonaViewModel.cs" />
@@ -137,6 +139,9 @@
     </Compile>
     <Compile Include="Views\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HttpCall.xaml.cs">
+      <DependentUpon>HttpCall.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
@@ -170,6 +175,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
     </PackageReference>
+    <PackageReference Include="System.Net.Http.Json">
+      <Version>8.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -178,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HttpCall.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

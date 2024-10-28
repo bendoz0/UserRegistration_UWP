@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="UserRegistration.Views.HttpCall"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UserRegistration.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Richieste HTTP" FontSize="32" HorizontalAlignment="Center" Margin="0,24,0,50"></TextBlock>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button FontSize="24" Content="Visualizza Commenti" Margin="0,0,40,0" Click="ClickComments"/>
+                <Button FontSize="24" Content="Visualizza Prodotti" Click="ClickProducts"/>
+            </StackPanel>
+        </StackPanel>
+
+
+        <ListView Grid.Row="1" x:Name="CommentsList" Visibility="Collapsed">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding PostId}"></TextBlock>
+                        <TextBlock Text="{Binding Id}"></TextBlock>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                        <TextBlock Text="{Binding Surname}"></TextBlock>
+                        <TextBlock Text="{Binding Email}"></TextBlock>
+                        <TextBlock Text="{Binding Body}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        <ListView Grid.Row="1" x:Name="ProductsList" Visibility="Collapsed">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding UserId}"></TextBlock>
+                        <TextBlock Text="{Binding Id}"></TextBlock>
+                        <TextBlock Text="{Binding Title}"></TextBlock>
+                        <TextBlock Text="{Binding Completed}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+    </Grid>
+</Page>

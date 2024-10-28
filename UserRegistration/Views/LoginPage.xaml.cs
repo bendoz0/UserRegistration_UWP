@@ -108,6 +108,7 @@ namespace UserRegistration.Views
             catch (Exception ex)
             {
                 //Gestione eccezione da implementare
+                Debug.WriteLine(ex);
             }
             return result;
         }

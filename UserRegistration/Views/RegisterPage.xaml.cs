@@ -133,7 +133,6 @@ namespace UserRegistration.Views
         }
 
 
-
         private void SavePersone(object sender, RoutedEventArgs e)
         {
             try
@@ -153,6 +152,12 @@ namespace UserRegistration.Views
             {
                 Console.WriteLine("Il file non è stato trovato: "+ ex);
             }
+        }
+
+        private void SelectedItem(object sender, RoutedEventArgs e)
+        {
+            btnUpdate.IsEnabled = true;
+            btnDelete.IsEnabled = true;
         }
 
 

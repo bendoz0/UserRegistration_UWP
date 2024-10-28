@@ -22,13 +22,15 @@
 
         <StackPanel Grid.Row="1">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="6">
-                <TextBlock FontSize="69">Menù Delle Opzioni</TextBlock>
+                <TextBlock FontSize="40">Menù Delle Opzioni</TextBlock>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 32,0,0">
-                <HyperlinkButton Margin="0,0,80,0" FontSize="32" Click="ClickHomePage">Registrazione Persone</HyperlinkButton>
-                <HyperlinkButton Margin="0,0,80,0" FontSize="32" Click="ClickLogOut">Log Out</HyperlinkButton>
-                <HyperlinkButton FontSize="32" Click="ClickClose">Chiusura Programma</HyperlinkButton>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 24,0,0">
+                <HyperlinkButton Margin="0,0,80,0" FontSize="24" Click="ClickHomePage">Registrazione Persone</HyperlinkButton>
+                <HyperlinkButton Margin="0,0,80,0" FontSize="24" Click="ClickHttpPage">Chiamate HTTP</HyperlinkButton>
+                <HyperlinkButton Margin="0,0,80,0" FontSize="24" Click="ClickLogOut">Log Out</HyperlinkButton>
+                <HyperlinkButton FontSize="24" Click="ClickClose">Chiusura Programma</HyperlinkButton>
             </StackPanel>
         </StackPanel>
     </Grid>
+
 </Page>

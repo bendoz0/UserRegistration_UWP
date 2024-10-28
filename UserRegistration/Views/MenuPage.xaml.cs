@@ -61,5 +61,10 @@ namespace UserRegistration.Views
                 Application.Current.Exit();
             }
         }
+
+        private void ClickHttpPage(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(HttpCall));
+        }
     }
 }
