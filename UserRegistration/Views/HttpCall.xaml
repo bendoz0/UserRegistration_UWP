@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
-            <TextBlock Text="Richieste HTTP" FontSize="32" HorizontalAlignment="Center" Margin="0,24,0,50"></TextBlock>
+            <TextBlock Text="Richieste HTTP" FontSize="32" HorizontalAlignment="Center" Margin="0,24,0,24"></TextBlock>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button FontSize="24" Content="Visualizza Commenti" Margin="0,0,40,0" Click="ClickComments"/>
                 <Button FontSize="24" Content="Visualizza Prodotti" Margin="0,0,40,0" Click="ClickProducts"/>
@@ -29,14 +29,20 @@
         <ListView Grid.Row="1" x:Name="CommentsList" Visibility="Collapsed">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding PostId}"></TextBlock>
-                        <TextBlock Text="{Binding Id}"></TextBlock>
-                        <TextBlock Text="{Binding Name}"></TextBlock>
-                        <TextBlock Text="{Binding Surname}"></TextBlock>
-                        <TextBlock Text="{Binding Email}"></TextBlock>
-                        <TextBlock Text="{Binding Body}"></TextBlock>
-                    </StackPanel>
+                    <Border Background="White" 
+                            CornerRadius="8" 
+                            BorderBrush="LightGray" 
+                            BorderThickness="1" 
+                            Margin="8" >
+                        <StackPanel>
+                            <TextBlock Text="{Binding PostId}" Foreground="Gray" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Id}" Foreground="Gray"/>
+                            <TextBlock Text="{Binding Name}" Foreground="Gray" FontWeight="SemiBold" />
+                            <TextBlock Text="{Binding Surname}" Foreground="Gray"/>
+                            <TextBlock Text="{Binding Email}" Foreground="Gray" />
+                            <TextBlock Text="{Binding Body}" Foreground="Gray" TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -31,7 +31,7 @@ namespace UserRegistration.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Welcome.Text = "Operatore: " + UtenteLoggato.Nome;
+            Welcome.Text = "Operatore: " + LoginPage.NameSession;
         }
 
         private void ClickHomePage(object sender, RoutedEventArgs e)

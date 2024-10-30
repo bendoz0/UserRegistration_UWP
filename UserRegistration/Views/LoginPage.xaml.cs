@@ -27,13 +27,14 @@ namespace UserRegistration.Views
 {
     public sealed partial class LoginPage : Page
     {
-
+        internal static string NameSession;
         private List<Credentials> _listCredentials = [];
 
         public LoginPage()
         {
             this.InitializeComponent();
 
+            // permette di aspettare il caricamento degli elementi di LoginPage per poi verificare la sessione dell'utente
             this.Loaded += (sender, args) => {
                 if (VerifySession())
                 {
@@ -182,9 +183,9 @@ namespace UserRegistration.Views
             {
                 StorageFile file = ApplicationData.Current.LocalFolder.GetFileAsync("session.json").GetAwaiter()
                 .GetResult();
-                string name = FileIO.ReadTextAsync(file).GetAwaiter().GetResult();
+                NameSession = FileIO.ReadTextAsync(file).GetAwaiter().GetResult();
 
-                if (name == "")
+                if (NameSession == "")
                 {
                     return false;
                 }
