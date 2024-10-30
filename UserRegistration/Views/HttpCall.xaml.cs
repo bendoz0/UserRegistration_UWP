@@ -29,7 +29,8 @@ namespace UserRegistration.Views
     {
         private readonly HttpClient _httpClient = new HttpClient();
         private readonly string _urlComments = "https://jsonplaceholder.typicode.com/comments";
-        private readonly string _urlProducts = "https://jsonplaceholder.typicode.com/todos";
+        private readonly string _urlToDo = "https://jsonplaceholder.typicode.com/todos";
+        private readonly string _urlUsers = "https://jsonplaceholder.typicode.com/users";
 
 
         public HttpCall()
@@ -43,11 +44,16 @@ namespace UserRegistration.Views
             CommentsList.ItemsSource = comments;
         }
 
-        private async Task GetPlaceholderProducts()
+        private async Task GetPlaceholderToDo()
         {
-            var products = await _httpClient.GetFromJsonAsync<List<Product>>(_urlProducts);
-            Debug.WriteLine(products.ToString());
+            var products = await _httpClient.GetFromJsonAsync<List<ToDo>>(_urlToDo);
             ProductsList.ItemsSource = products;
+        }
+
+        private async Task GetPlaceholderUsers()
+        {
+            var utenti = await _httpClient.GetFromJsonAsync<List<User>>(_urlUsers);
+            UsersList.ItemsSource = utenti;
         }
 
 
@@ -55,6 +61,7 @@ namespace UserRegistration.Views
         private void ClickComments(object sender, RoutedEventArgs e)
         {
             ProductsList.Visibility = Visibility.Collapsed;
+            UsersList.Visibility = Visibility.Collapsed;
             CommentsList.Visibility = Visibility.Visible;
             _ = GetPlaceholderComments();
         }
@@ -62,8 +69,18 @@ namespace UserRegistration.Views
         private void ClickProducts(object sender, RoutedEventArgs e)
         {
             CommentsList.Visibility = Visibility.Collapsed;
+            UsersList.Visibility = Visibility.Collapsed;
             ProductsList.Visibility = Visibility.Visible;
-            _ = GetPlaceholderProducts();
+            _ = GetPlaceholderToDo();
         }
+
+        private void ClickUsers(object sender, RoutedEventArgs e)
+        {
+            CommentsList.Visibility = Visibility.Collapsed;
+            ProductsList.Visibility = Visibility.Collapsed;
+            UsersList.Visibility = Visibility.Visible;
+            _ = GetPlaceholderUsers();
+        }
+
     }
 }

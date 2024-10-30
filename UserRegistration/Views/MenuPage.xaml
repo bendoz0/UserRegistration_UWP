@@ -15,22 +15,18 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <TextBlock x:Name="Welcome" HorizontalAlignment="Left" Padding="8" Margin="8" FontSize="24" FontWeight="Bold"/>
-        </StackPanel>
+        <StackPanel Grid.Row="0" Background="DimGray">
+            <TextBlock x:Name="Welcome" HorizontalAlignment="Left" Padding="8" FontSize="24" FontWeight="Bold" Foreground="Black"/>
 
-
-        <StackPanel Grid.Row="1">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="6">
-                <TextBlock FontSize="40">Menù Delle Opzioni</TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 24,0,0">
-                <HyperlinkButton Margin="0,0,80,0" FontSize="24" Click="ClickHomePage">Registrazione Persone</HyperlinkButton>
-                <HyperlinkButton Margin="0,0,80,0" FontSize="24" Click="ClickHttpPage">Chiamate HTTP</HyperlinkButton>
-                <HyperlinkButton Margin="0,0,80,0" FontSize="24" Click="ClickLogOut">Log Out</HyperlinkButton>
-                <HyperlinkButton FontSize="24" Click="ClickClose">Chiusura Programma</HyperlinkButton>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <HyperlinkButton Margin="0,0,80,0" FontSize="16" Click="ClickHomePage" Foreground="Black" FontWeight="Medium">Registrazione Persone</HyperlinkButton>
+                <HyperlinkButton Margin="0,0,80,0" FontSize="16" Click="ClickHttpPage" Foreground="Black" FontWeight="Medium">Chiamate HTTP</HyperlinkButton>
+                <HyperlinkButton Margin="0,0,80,0" FontSize="16" Click="ClickLogOut" Foreground="Black" FontWeight="Medium">Log Out</HyperlinkButton>
+                <HyperlinkButton FontSize="16" Click="ClickClose" Foreground="Black" FontWeight="Medium">Chiusura Programma</HyperlinkButton>
             </StackPanel>
         </StackPanel>
+
+        <Frame Grid.Row="1" x:Name="NavigationBar"></Frame>
     </Grid>
 
 </Page>

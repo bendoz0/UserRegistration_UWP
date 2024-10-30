@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserRegistration.Models
 {
-    internal class Product
+    internal class ToDo
     {
         public int UserId { get; set; }
         public int Id { get; set; }

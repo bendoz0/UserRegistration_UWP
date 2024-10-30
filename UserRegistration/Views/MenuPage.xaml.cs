@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using UserRegistration.Models;
+using Windows.Storage;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -37,9 +38,14 @@ namespace UserRegistration.Views
         {
             Frame.Navigate(typeof(RegisterPage));
         }
+        private void ClickHttpPage(object sender, RoutedEventArgs e)
+        {
+            NavigationBar.Navigate(typeof(HttpCall));
+        }
 
         private void ClickLogOut(object sender, RoutedEventArgs e)
         {
+            TerminateSession();
             Frame.Navigate(typeof(LoginPage));
         }
 
@@ -62,9 +68,15 @@ namespace UserRegistration.Views
             }
         }
 
-        private void ClickHttpPage(object sender, RoutedEventArgs e)
+
+        private void TerminateSession()
         {
-            Frame.Navigate(typeof(HttpCall));
+            StorageFile file = ApplicationData.Current.LocalFolder.GetFileAsync("session.json").GetAwaiter()
+                .GetResult();
+
+            FileIO.WriteTextAsync(file, "");
         }
+
+
     }
 }

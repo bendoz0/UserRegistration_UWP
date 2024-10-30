@@ -33,7 +33,15 @@ namespace UserRegistration.Views
         public LoginPage()
         {
             this.InitializeComponent();
-            LoadCredentialsAsync(); 
+
+            this.Loaded += (sender, args) => {
+                if (VerifySession())
+                {
+                    Frame.Navigate(typeof(MenuPage));
+                }
+            };
+
+            LoadCredentialsAsync();
         }
 
         private void TextChanged(object sender, RoutedEventArgs routedEventArgs)
@@ -50,6 +58,9 @@ namespace UserRegistration.Views
                 {
                     UtenteLoggato.Nome = inputUsername.Text;
                     UtenteLoggato.Password = inputPassword.Password;
+
+                    UserSession();
+
                     Frame.Navigate(typeof(MenuPage));
                 }
             }
@@ -83,7 +94,7 @@ namespace UserRegistration.Views
                 {
                     Debug.WriteLine("Username uguale");
                     var usernameErrorEffect = ErrorEffect(inputUsername);
-                    inputUsername.Header = "Username già in uso";
+                    inputUsername.Header = "Username già Registrato";
                     Task.WhenAll(usernameErrorEffect);
                 }
                 else
@@ -142,6 +153,9 @@ namespace UserRegistration.Views
             {
                 UtenteLoggato.Nome = inputUsername.Text;
                 UtenteLoggato.Password = inputPassword.Password;
+
+                UserSession();
+
                 Frame.Navigate(typeof(MenuPage));
             }
             else
@@ -150,6 +164,37 @@ namespace UserRegistration.Views
                 var pasErrorEffect = ErrorEffect(inputPassword);
 
                 await Task.WhenAll(usernameErrorEffect, pasErrorEffect);
+            }
+        }
+
+        private void UserSession()
+        {
+            StorageFile file = ApplicationData.Current.LocalFolder
+                .CreateFileAsync("session.json",
+                    CreationCollisionOption.ReplaceExisting).GetAwaiter().GetResult();
+
+            FileIO.WriteTextAsync(file, UtenteLoggato.Nome);
+        }
+
+        private bool VerifySession()
+        {
+            try
+            {
+                StorageFile file = ApplicationData.Current.LocalFolder.GetFileAsync("session.json").GetAwaiter()
+                .GetResult();
+                string name = FileIO.ReadTextAsync(file).GetAwaiter().GetResult();
+
+                if (name == "")
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            catch (FileNotFoundException)
+            {
+                // File doesn't exist, no session established
+                return false;
             }
         }
 

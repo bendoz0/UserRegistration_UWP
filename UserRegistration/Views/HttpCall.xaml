@@ -19,7 +19,9 @@
             <TextBlock Text="Richieste HTTP" FontSize="32" HorizontalAlignment="Center" Margin="0,24,0,50"></TextBlock>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button FontSize="24" Content="Visualizza Commenti" Margin="0,0,40,0" Click="ClickComments"/>
-                <Button FontSize="24" Content="Visualizza Prodotti" Click="ClickProducts"/>
+                <Button FontSize="24" Content="Visualizza Prodotti" Margin="0,0,40,0" Click="ClickProducts"/>
+                <Button FontSize="24" Content="Visualizza Prodotti" Click="ClickUsers"/>
+
             </StackPanel>
         </StackPanel>
 
@@ -48,6 +50,30 @@
                         <TextBlock Text="{Binding Id}"></TextBlock>
                         <TextBlock Text="{Binding Title}"></TextBlock>
                         <TextBlock Text="{Binding Completed}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Grid.Row="1" x:Name="UsersList" Visibility="Collapsed">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Id}"></TextBlock>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                        <TextBlock Text="{Binding Username}"></TextBlock>
+                        <TextBlock Text="{Binding Email}"></TextBlock>
+                        <TextBlock Text="{Binding Address.Street}"></TextBlock>
+                        <TextBlock Text="{Binding Address.Suite}"></TextBlock>
+                        <TextBlock Text="{Binding Address.City}"></TextBlock>
+                        <TextBlock Text="{Binding Address.Zipcode}"></TextBlock>
+                        <TextBlock Text="{Binding Address.Geo.Lat}"></TextBlock>
+                        <TextBlock Text="{Binding Address.Geo.Lng}"></TextBlock>
+                        <TextBlock Text="{Binding Phone}"></TextBlock>
+                        <TextBlock Text="{Binding Website}"></TextBlock>
+                        <TextBlock Text="{Binding Company.Name}"></TextBlock>
+                        <TextBlock Text="{Binding Company.CatchPhrase}"></TextBlock>
+                        <TextBlock Text="{Binding Company.Bs}"></TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
